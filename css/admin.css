@@ -1,0 +1,139 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;  
+}
+
+.wrapper{
+	padding: 1%;
+	width: 80%;
+	margin: 0 auto;
+}
+.text-center{
+	text-align: center;
+}
+.clearfix{
+	float: none;
+	clear: both;
+}
+
+.tbl-full{
+	width: 100%;
+}
+.tbl-admin{
+	width: 30%;
+
+}
+ table tr th{
+	border-bottom: 1px solid black; 
+	padding: 1%;
+	text-align: left;
+}
+
+table tr td{
+	padding: 2%;	
+}
+.btn-add{
+	background-color: #a55eea;
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btn-add:hover{
+    color: white;
+    background-color: #2bcbba;
+}
+
+.btn-update{
+	background-color: #7bed9f;
+    color: black;
+    cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-update:hover{
+    color: white;
+    background-color: #706fd3;
+}
+.btn-delete{
+	background-color: #ff5252;
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-delete:hover{
+    color: black;
+    background-color: #f7f1e3;
+}
+.input-box{
+	width: 75%;
+    padding: 1%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+.success{
+	color: #4cd137;
+}
+.error{
+	color: #EA2027;
+}
+
+
+/* css for menu*/
+.menu{
+	border-bottom: 1px solid grey;
+}
+.menu{
+	text-align: center;
+
+}
+.menu ul{
+	list-style-type: none;	
+}
+
+.menu ul li{
+	display: inline;
+	padding: 1%;
+}
+.menu ul li a{
+	text-decoration: none;
+	font-weight: bold;
+	color: #a55eea;
+}
+.menu ul li a:hover{
+	color: #2bcbba;
+}
+
+/* css for main content */
+.main-content{
+	background-color: #d1d8e0;
+	padding: 3% 0;
+}
+.col-4{
+	width: 14%;
+	background-color: white;
+	margin: 1%;
+	padding: 2%;
+	float: left;
+
+}
+
+/* css for footer*/
+.footer{
+	background-color: #a55eea;
+	color: white;
+}
+
+/* css for login */
+.login{
+	border: 2px solid #6300FF;
+	width: 30%;
+	margin: 10%;
+}

@@ -1,0 +1,153 @@
+<?php include('partials/menu.php'); ?>
+
+<div class="main-content">
+	<div class="wrapper">
+		<h1>Update Reservation</h1>
+		<br><br>
+
+		<?php
+		   //check whether the id is set or not
+		    if(isset($_GET['id']))
+		    {
+			//get the id and all ther details
+			//echo "getting the data";
+			$id = $_GET['id'];
+
+			//create sql query to get all other details
+			$sql = "SELECT * FROM tbl_reservation WHERE id=$id";
+
+			//execute the query
+			$res = mysqli_query($conn, $sql);
+
+			//count the rows to check whether the id is valid or not
+			$count = mysqli_num_rows($res);
+
+			if($count==1)
+			{
+				//get all the data
+				$row = mysqli_fetch_assoc($res);
+				$customer_name = $row['customer_name'];
+				$customer_email = $row['customer_email'];
+				$customer_contact = $row['customer_contact'];
+				$restaurant = $row['restaurant'];
+				$tables = $row['tables'];
+				$status = $row['status'];
+			}
+
+		}
+		else
+		{
+			//redirect to manage category
+			header('location:'.SITEURL.'admin/manage-reservation.php');
+		}
+
+		?>
+		<form action="" method="POST">
+
+			<table class="tbl-30">
+				<tr>
+					<td>Customer Name:</td>
+					<td>
+						<input type="text" name="customer_name" value="<?php echo $customer_name; ?>">
+					</td>
+				</tr>
+
+				<tr>
+					<td>Customer Email:</td>
+					<td>
+						<input type="text" name="customer_email" value="<?php echo $customer_email; ?>">
+					</td>
+				</tr>
+				
+
+				<tr>
+					<td>Customer Contact:</td>
+					<td>
+						<input type="text" name="customer_contact" value="<?php echo $customer_contact; ?>">
+					</td>
+				</tr>
+
+				<tr>
+					<td>Restaurant:</td>
+					<td>
+						<input type="text" name="restaurant" value="<?php echo $restaurant; ?>">
+					</td>
+				</tr>
+
+				<tr>
+					<td>Tables:</td>
+					<td>
+						<input type="number" name="tables" value="<?php echo $tables; ?>">
+					</td>
+				</tr>
+
+				<tr>
+					<td>Status: </td>
+					<td>
+						<select name="status">
+							<option <?php if ($status=="Reserved"){ echo "selected";} ?> value="Reserved">Reserved</option>
+							<option <?php if ($status=="Pending"){ echo "selected";} ?> value="Pending">On Delivery</option>
+							<option <?php if ($status=="Cancelled"){ echo "selected";} ?> value="Cancelled">Cancelled</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<input type="submit" name="submit" value="Update Reservation" class="btn-update">
+					</td>
+				</tr>
+			</table>
+		</form>
+
+		<?php 
+		    //chheck whether update button is clicked or not
+		    if(isset($_POST['submit']))
+		    {
+		    	//echo "clicked";
+		    	//get all the values from form
+		    	$id=$_POST['id'];
+		    	$customer_name=$_POST['customer_name'];
+		    	$customer_email=$_POST['customer_email'];
+		    	$customer_contact=$_POST['customer_contact'];
+		    	$restaurant=$row['restaurant'];
+				$tables=$row['tables'];
+				$status=$row['status'];
+
+		    	//update the values
+		    	//sql query 
+		    	$sql2 = "UPDATE tbl_reservation SET 
+                    customer_name = '$customer_name',
+                    customer_email = '$customer_email',
+                    customer_contact = '$customer_contact',
+                    restaurant = '$restaurant',
+                    tables = '$tables',
+                    status = '$status',
+                    WHERE id=$id
+		    	";
+
+		    	//execute the query
+		    	$res2 = mysqli_query($conn, $sql2);
+
+		    	//check whether updated or not
+		    	//and redirect to manage reservation with message
+		    	if($res2==true)
+		    	{
+		    		//updated
+		    		$_SESSION['update'] = "<div class = 'success'>Reservation Updated Successfully!.</div>";
+		    		header('location:'.SITEURL.'admin/manage-reservation.php');
+		    	}
+		    	else
+		    	{
+		    		//failed to update
+		    		$_SESSION['update'] = "<div class = 'error'>Failed to update the reservation.</div>";
+		    		header('location:'.SITEURL.'admin/manage-reservation.php');
+		    	}
+		    }
+
+		?>
+
+	</div>
+	
+</div>
+<?php include('partials/footer.php'); ?>
